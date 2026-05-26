@@ -239,13 +239,16 @@
 .btn:focus-visible::before {
   --btn-fill: 100%;
 }
-.jay::before {
+.jay::before, .offset::before {
   content: '';
   position: absolute;
   border: 1px solid var(--color-ink);
   top: 10px; left: -10px; right: 10px; bottom: -10px;
   display: inline-block;
   z-index: 0;
+}
+.offset::before {
+    @apply rounded-md;
 }
 @media (prefers-reduced-motion: reduce) {
   .btn::before {

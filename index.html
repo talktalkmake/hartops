@@ -233,11 +233,15 @@
 
         <div class="mb-4">
           <label class="field-label" for="email">Your Email</label>
-          <input class="input-field shadow-[-8px_8px_0px_0px_rgba(0,0,0,.25)]" id="email" name="email" type="email" required autocomplete="email" placeholder="sam@exampleco.com">
+          <div class="relative offset z-0">
+            <input class="z-50 relative input-field" id="email" name="email" type="email" required autocomplete="email" placeholder="sam@exampleco.com">
+          </div>
         </div>
         <div class="mb-4">
           <label class="field-label" for="message">What's on your mind?</label>
-          <textarea class="input-field min-h-[7rem] resize-y shadow-[-8px_8px_0px_0px_rgba(0,0,0,.25)]" id="message" name="message" rows="5" required></textarea>
+          <div class="relative offset z-0">
+            <textarea class="z-50 relative input-field min-h-[7rem] resize-y" id="message" name="message" rows="5" required></textarea>
+          </div>
         </div>
 
         <button type="submit" class="btn">Send</button>

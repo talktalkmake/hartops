@@ -201,6 +201,9 @@
   .sticky {
     position: sticky;
   }
+  .z-0 {
+    z-index: 0;
+  }
   .z-10 {
     z-index: 10;
   }
@@ -862,7 +865,7 @@
 .btn:hover::before, .btn:focus-visible::before {
   --btn-fill: 100%;
 }
-.jay::before {
+.jay::before, .offset::before {
   content: '';
   position: absolute;
   border: 1px solid var(--color-ink);
@@ -872,6 +875,9 @@
   bottom: -10px;
   display: inline-block;
   z-index: 0;
+}
+.offset::before {
+  border-radius: var(--radius-md);
 }
 @media (prefers-reduced-motion: reduce) {
   .btn::before {
