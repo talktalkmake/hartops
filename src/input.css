@@ -201,8 +201,7 @@
 
 /* Sticky header — backdrop blur is awkward to express purely as utilities. */
 .site-header {
-  @apply sticky top-0 z-10 backdrop-saturate-150 backdrop-blur-md;
-  background: color-mix(in srgb, var(--color-cream) 94%, transparent);
+  @apply sticky top-0;
 }
 
 /* Diagonal wipe-in border ring on button hover/focus.
