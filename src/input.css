@@ -1,0 +1,255 @@
+@import "tailwindcss";
+
+/*
+ * Theme tokens — exposed to Tailwind utilities.
+ * These mirror the live Squarespace site (--white-hsl, --black-hsl, etc.).
+ */
+@theme {
+  --color-cream: #E7E4D6;       /* page background */
+  --color-ink: #2C2E27;          /* dark olive-grey body text */
+  --color-blue: #047AFF;         /* primary accent / theme-dark bg */
+  --color-yellow: #ECF251;       /* button fill / accent on dark themes */
+  --color-spooky-mulder: #51FF2F;         /* secondary accent for fun */
+  --color-orange: #FF9500;
+  --color-dough: #E7E4D6;
+  --color-butter: #FDFD96;
+  --color-canary: #F5FF00;
+  --color-navy: #0B3E9D;
+
+  --font-heading: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-body: "PT Serif", Georgia, "Times New Roman", serif;
+  --font-meta: "Roboto Condensed", system-ui, sans-serif;
+  --font-ui: "Abel", system-ui, sans-serif;
+}
+
+/*
+ * Element-level defaults — composed from utilities via @apply.
+ */
+@layer base {
+  html {
+    @apply text-[17px] md:text-[19px] scroll-smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply text-ink font-body leading-normal antialiased;
+  }
+
+  h1, h2, h3 {
+    @apply font-heading text-black font-normal leading-[1.15] tracking-[-0.02em] mb-[0.6em];
+  }
+
+  p     { @apply mb-[1.1em]; }
+  strong { @apply font-bold; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { @apply scroll-auto; }
+  }
+}
+
+/*
+ * Section themes — mirror Squarespace's data-section-theme="dark" / "black".
+ */
+@layer components {
+  .theme-dark            { @apply bg-blue text-white; }
+  .theme-dark h1,
+  .theme-dark h2,
+  .theme-dark h3         { @apply text-white; }
+  .theme-dark a          { @apply text-yellow; }
+  .theme-dark a:hover,
+  .theme-dark a:focus    { @apply text-white; }
+
+  .theme-black           { @apply bg-ink text-cream; }
+  .theme-black h1,
+  .theme-black h2,
+  .theme-black h3        { @apply text-cream; }
+  .theme-black a         { @apply text-yellow; }
+  .theme-black a:hover,
+  .theme-black a:focus   { @apply text-white; }
+}
+
+/*
+ * Components — repeated patterns extracted so the HTML stays readable.
+ */
+@layer components {
+  .btn {
+    @apply inline-block py-[0.7em] px-[1.6em] font-meta text-base font-medium uppercase tracking-[2px] rounded-full border-transparent cursor-pointer no-underline relative isolate bg-canary;
+    @apply transition-[background-color,color,border-color] duration-150 ease-out;
+    --btn-ring: var(--color-ink);
+  }
+  .theme-dark .btn,
+  .theme-black .btn {
+    --btn-ring: var(--color-cream);
+    background: var(--color-ink);
+    color: var(--color-cream)
+  }
+
+  .btn-primary {
+    @apply bg-yellow text-black;
+  }
+  .btn-primary:hover,
+  .btn-primary:focus {
+    @apply bg-black text-yellow;
+  }
+  .theme-dark .btn-primary:hover,
+  .theme-dark .btn-primary:focus,
+  .theme-black .btn-primary:hover,
+  .theme-black .btn-primary:focus {
+    @apply bg-white text-black;
+  }
+}
+  
+/*
+ * M I D.
+ */
+@layer components {
+  .theme-mid {
+    @apply bg-dough text-ink;
+  }
+  .theme-mid .btn{
+    --btn-ring: var(--color-ink);
+    background: var(--color-blue);
+    color: white;
+  }
+
+  .btn-primary {
+    @apply bg-yellow text-black;
+  }
+  .btn-primary:hover,
+  .btn-primary:focus {
+    @apply bg-black text-yellow;
+  }
+  .theme-mid .btn-primary:hover,
+  .theme-mid .btn-primary:focus{
+    @apply bg-white text-black;
+  }
+
+  .btn-outline {
+    @apply bg-transparent text-spooky-mulder border-ink;
+    background: var(--color-ink);
+  }
+
+  .input-field {
+    @apply w-full py-[0.85em] px-4 font-body text-black bg-white border border-white rounded-md;
+  }
+  .input-field:focus {
+    @apply outline-2 outline-yellow outline-offset-2 border-yellow;
+  }
+
+  .field-label {
+    @apply block font-meta font-medium uppercase tracking-[0.04em] text-sm mb-2 text-white;
+  }
+}
+
+/*
+ * Bespoke patterns that Tailwind utilities can't express cleanly.
+ * These rely on `content:`, `counter()`, or position contexts that have no
+ * single-utility equivalent — leaving them as raw CSS keeps the HTML clean.
+ */
+
+/* Marker lists (arrow / check). */
+.list-arrow,
+.list-check {
+  @apply list-none p-0;
+}
+.list-arrow > li,
+.list-check > li {
+  @apply relative pl-7 mb-[0.85em];
+}
+.list-arrow > li::before {
+  @apply absolute left-0 font-bold text-yellow;
+  content: "→";
+}
+.list-check > li::before {
+  @apply absolute left-0 font-bold text-blue;
+  content: "✓";
+}
+.theme-dark .list-arrow > li::before,
+.theme-dark .list-check > li::before {
+  @apply text-yellow;
+}
+
+/* Timeline with counter-numbered circles. */
+.timeline-list {
+  @apply list-none p-0;
+  counter-reset: step;
+}
+.timeline-list > li {
+  @apply relative pl-15 py-6 border-b border-ink/15;
+  counter-increment: step;
+}
+.timeline-list > li:last-child {
+  @apply border-b-0;
+}
+.timeline-list > li::before {
+  @apply absolute left-0 top-6 w-10 h-10 grid place-items-center bg-blue text-white rounded-full font-meta font-medium text-[0.95rem] tracking-wider;
+  content: counter(step);
+}
+
+/* Honeypot — visually hidden but reachable for form spam-bot detection. */
+.hp-field {
+  @apply absolute -left-[9999px] w-px h-px opacity-0 pointer-events-none;
+}
+
+/* Skip link — hidden until focused. Standard a11y pattern for keyboard users. */
+.skip-link {
+  @apply absolute left-2 -top-12 z-50 bg-ink text-cream px-4 py-2 rounded-md font-meta text-sm uppercase tracking-wide;
+}
+.skip-link:focus {
+  @apply top-2 outline-2 outline-yellow outline-offset-2;
+}
+
+/* Sticky header — backdrop blur is awkward to express purely as utilities. */
+.site-header {
+  @apply sticky top-0 z-10 backdrop-saturate-150 backdrop-blur-md;
+  background: color-mix(in srgb, var(--color-cream) 94%, transparent);
+}
+
+/* Diagonal wipe-in border ring on button hover/focus.
+   `--btn-fill` is registered via @property so CSS can transition the
+   percentage stop position of a linear-gradient. The gradient runs at
+   45deg (bottom-left → top-right) with a hard stop at --btn-fill:
+   left of the stop = ring colour, right of the stop = transparent.
+   Animating 0% → 100% "draws" the ring in diagonally from BL to TR
+   and holds; un-hover reverses 100% → 0% to wipe it out.
+   The content-box exclude mask clips the gradient to a ring shape. */
+@property --btn-fill {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 5px 5px -5px -5px;
+  padding: 2px;
+  border-radius: inherit;
+  background: linear-gradient(
+    45deg,
+    var(--btn-ring) var(--btn-fill),
+    transparent var(--btn-fill)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  transition: --btn-fill 200ms ease-out;
+}
+.btn:hover::before,
+.btn:focus-visible::before {
+  --btn-fill: 100%;
+}
+.jay::before {
+  content: '';
+  position: absolute;
+  border: 1px solid var(--color-ink);
+  top: 10px; left: -10px; right: 10px; bottom: -10px;
+  display: inline-block;
+  z-index: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn::before {
+    transition: none;
+  }
+}

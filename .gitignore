@@ -1,0 +1,14 @@
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+.env
+.env.*
+node_modules/
+
+# Tailwind standalone CLI binary — each developer downloads their own.
+# See README for the install command.
+tools/tailwindcss
+tools/tailwindcss.exe
+tools/tailwindcss-*
