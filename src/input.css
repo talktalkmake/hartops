@@ -186,6 +186,27 @@
   content: counter(step);
 }
 
+/* Blog post body — styles the HTML that build-blog.js renders from Markdown,
+   so individual posts carry no utility classes of their own (write Markdown,
+   run the build, done — no Tailwind rebuild per post). */
+@layer components {
+  .post-body { @apply text-ink; }
+  .post-body h2 { @apply text-2xl md:text-3xl mt-10 mb-3; }
+  .post-body h3 { @apply text-xl md:text-2xl mt-8 mb-2; }
+  .post-body p  { @apply mb-[1.1em]; }
+  .post-body a  { @apply text-blue underline underline-offset-2; }
+  .post-body a:hover { @apply text-ink; }
+  .post-body ul { @apply list-disc pl-6 mb-[1.1em]; }
+  .post-body ol { @apply list-decimal pl-6 mb-[1.1em]; }
+  .post-body li { @apply mb-[0.4em]; }
+  .post-body blockquote { @apply border-l-4 border-blue/40 pl-4 italic text-ink/80 my-6; }
+  .post-body hr { @apply border-0 border-t border-ink/15 my-10; }
+  .post-body code {
+    @apply text-[0.9em] bg-ink/5 px-1 py-0.5 rounded;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+}
+
 /* Honeypot — visually hidden but reachable for form spam-bot detection. */
 .hp-field {
   @apply absolute -left-[9999px] w-px h-px opacity-0 pointer-events-none;

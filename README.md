@@ -80,6 +80,39 @@ To change where submissions go: log into Web3Forms with the email tied to the ke
 
 A honeypot field (`botcheck`) is included for spam — bots tend to fill every field, so any submission with that field set is silently dropped client-side. Web3Forms also has hCaptcha available in their dashboard if spam volume warrants it.
 
+## Blog
+
+Posts live at `hartops.com/blog/<slug>/` and are written in **Markdown**. The blog is fully static — a small build step turns each Markdown file into a styled page and regenerates the index and sitemap. No npm; Markdown is rendered by the vendored `tools/marked.min.js` (MIT, committed).
+
+### Write a post
+
+1. Create `blog/posts/<slug>.md`. **The file name is the slug — it becomes the URL** (`blog/posts/the-margin-leak.md` → `/blog/the-margin-leak/`). Lowercase words, hyphens.
+2. Start the file with a frontmatter block, then write Markdown:
+
+   ```md
+   ---
+   title: Your post title
+   date: 2026-06-23
+   description: One sentence — used for SEO and the index card.
+   ---
+
+   Your post in Markdown…
+   ```
+
+3. Build:
+
+   ```sh
+   node tools/build-blog.js
+   ```
+
+   This writes `blog/<slug>/index.html`, regenerates `blog/index.html` (the listing, newest first), and updates `sitemap.xml`.
+
+4. Commit the new `.md`, the generated `blog/<slug>/index.html`, and the updated `blog/index.html` + `sitemap.xml`. Push to `main` — Pages redeploys in ~1 minute.
+
+You do **not** rebuild `styles.css` for a new post — posts carry no per-post utility classes; their look comes from the `.post-body` rules in `src/input.css`. Only rebuild Tailwind if you change the post template (`tools/build-blog.js`) or the `.post-body` styles. Supported Markdown: headings, paragraphs, **bold**, _italic_, links, lists, blockquotes, `inline code`, and `---` rules.
+
+**URL permanence:** the slug (file name) is the permanent URL. Don't rename a published post's `.md` file — it breaks every link to it.
+
 ## Hosting
 
 GitHub Pages, served from `main` branch root. Custom domain `hartops.com` configured via:
@@ -91,6 +124,6 @@ HTTPS is provided automatically by GitHub Pages once DNS resolves.
 
 ## What this site doesn't have, on purpose
 
-No analytics, no cookies, no tracking pixels, no newsletter signup, no blog (the blog lives at [getvera.site/blog](https://getvera.site/blog)), no booking integration, no auth, no CMS, no `package.json`, no `node_modules`.
+No analytics, no cookies, no tracking pixels, no newsletter signup, no booking integration, no auth, no CMS, no `package.json`, no `node_modules`. (The blog — see above — is plain static HTML built from Markdown, in keeping with all of that.)
 
 If you want analytics later, [Plausible](https://plausible.io) is the recommended add — it's cookie-free, so no cookie banner is needed.
