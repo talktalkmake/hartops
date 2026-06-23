@@ -4,7 +4,7 @@
 
 ## About Tom Hart
 
-Tom Hart is a profit advisor with 20 years inside marketing and creative agencies, covering operations, finance, and project management. He helps owner-operators move from high-stress firefighting to 20% margins by design. He previously ran a direct-to-consumer business in the USA for over a decade. He builds [VERA](https://getvera.site) — a Slack-native time-tracking and financial-intelligence assistant for agencies — and hosts *The Irreplaceable Professional* podcast.
+Tom Hart is a profit advisor with 20 years inside marketing and creative agencies, covering operations, finance, and project management. He helps owner-operators move from high-stress firefighting to 20% margins by design. He previously ran a direct-to-consumer business in the USA for over a decade. He builds [VERA](https://getvera.site) — a console-first time-tracking and financial-intelligence platform for agencies — and hosts *The Irreplaceable Professional* podcast.
 
 ## What Hart Ops does
 
@@ -37,7 +37,8 @@ Tom Hart is a profit advisor with 20 years inside marketing and creative agencie
 ## Key links
 
 - Homepage: https://hartops.com/
-- VERA (time-tracking product): https://getvera.site
-- Blog (manifesto behind the practice): https://getvera.site/blog
+- Blog (field notes on agency profit and operations): https://hartops.com/blog/
+- VERA (console-first time-tracking product): https://getvera.site
+- VERA build log (manifesto behind the practice): https://getvera.site/blog
 - Podcast: *The Irreplaceable Professional* on YouTube, Spotify, and Apple Podcasts
 - Contact: form on https://hartops.com/#contact
