@@ -32,6 +32,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Abel&family=Newsreader:ital,opsz,wght@0,6..72,400..500;1,6..72,400..500&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Condensed:wght@400;500&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="styles.css">
+<style>
+  .recent-writing-list { list-style: none; padding: 0; margin: 1.5rem 0 0; }
+  .recent-writing-list .post-card { display: grid; gap: 0.75rem; padding: 2.25rem 0; border-top: 1px solid rgba(44, 46, 39, 0.18); align-items: start; }
+  .recent-writing-list > li:first-child .post-card { border-top: 0; padding-top: 0.5rem; }
+  .recent-writing-list .post-index { font-family: "Roboto Condensed", system-ui, sans-serif; font-weight: 500; letter-spacing: 0.08em; font-size: 2.25rem; line-height: 1; color: var(--color-blue); margin: 0; }
+  .recent-writing-list .post-card p { margin: 0; }
+  .recent-writing-list .post-card h3 { margin: 0 0 0.4em; }
+  @media (min-width: 768px) {
+    .recent-writing-list .post-card { grid-template-columns: 4.5rem 1fr; column-gap: 2.5rem; padding: 3rem 0; }
+    .recent-writing-list > li:first-child .post-card { padding-top: 1rem; }
+    .recent-writing-list .post-index { font-size: 2.75rem; }
+  }
+  .recent-writing-cta { margin-top: 3rem; margin-bottom: 0; }
+  @media (min-width: 768px) { .recent-writing-cta { margin-top: 4rem; } }
+</style>
 
 <script type="application/ld+json">
 {
@@ -112,6 +127,7 @@
         <h1 class="text-[2.6rem] md:text-[3rem] mb-4">Tom Hart, a Profit Advisor<br />for $1M–$5M Marketing Agencies</h1>
         <p class="text-[1.15rem] max-w-[36em] mb-6">Clients pay me to identify and fix people and process leaks. I turn high-stress agencies into wealth-building machines by teaching clients how to operate businesses that prioritize profit and professional excellence.</p>
         <a class="btn" href="#about">More About Tom</a>
+        <p class="mt-6 mb-0"><!-- BUILD:LATEST_POST_LINK -->Read Tom's latest post: <a class="font-bold" href="/blog/the-gorilla-client/">The Gorilla Client</a><!-- /BUILD:LATEST_POST_LINK --></p>
       </div>
       <figure class="m-0">
         <img class="w-full max-w-[420px] rounded-md" src="assets/img/tom-hart.jpg" alt="Portrait of Tom Hart" width="420" height="525" loading="eager" decoding="async" fetchpriority="high" onerror="this.closest('figure').remove()">
@@ -216,6 +232,38 @@
           </figure>
         </section>
       </div>
+    </div>
+  </section>
+
+  <section class="px-6 md:px-8 py-14 md:py-22 bg-white" id="writing">
+    <div class="mx-auto max-w-[1100px]">
+      <p class="italic text-[1.5rem] m-0">Field Notes</p>
+      <h2 class="text-[2rem] md:text-[2.3125rem]">Recent Writing</h2>
+      <ol class="recent-writing-list">
+        <!-- BUILD:LATEST_POSTS -->
+        <li>
+          <article class="post-card">
+            <p class="post-index" aria-hidden="true">01</p>
+            <div>
+              <p class="font-meta uppercase tracking-[0.06em] text-sm text-ink/60">24 June 2026</p>
+              <h3 class="text-xl md:text-2xl"><a class="no-underline text-black hover:text-blue" href="/blog/the-gorilla-client/">The Gorilla Client</a></h3>
+              <p class="max-w-[62ch]">Guess who your worst client is</p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="post-card">
+            <p class="post-index" aria-hidden="true">02</p>
+            <div>
+              <p class="font-meta uppercase tracking-[0.06em] text-sm text-ink/60">23 June 2026</p>
+              <h3 class="text-xl md:text-2xl"><a class="no-underline text-black hover:text-blue" href="/blog/a-sample-note/">A sample note</a></h3>
+              <p class="max-w-[62ch]">A placeholder post to demonstrate the blog layout and the Markdown pipeline.</p>
+            </div>
+          </article>
+        </li>
+        <!-- /BUILD:LATEST_POSTS -->
+      </ol>
+      <p class="recent-writing-cta"><a class="btn" href="/blog/">All Field Notes</a></p>
     </div>
   </section>
 
