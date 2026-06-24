@@ -18,7 +18,7 @@ Seeing and acknowledging the atrophy in your own business can change its fate. A
 
 Over time, sweat equity (an asset) slides from one side of the figurative balance sheet to the other, mutating to become fret equity (a liability). The pulse of the business speeds up to service the need for instant gratification - 'We're busy, so we're being productive' - in response to the principal's latent belief that action equals progress. All the while decreasing both the staff's independence (ability to slow down and think creatively) and their own company's stature as their most important client. 
 
-### "We'll get to that some day." 
+### "We'll get to that some day" 
 
 It's comforting to imagine that one day, when we have more crew, we'll be able to have more muscle to row our boat faster. Dysfunction in a five-person team only gets worse as you add more souls to your vessel. Picturing eager newcomers improving our team by default - 'We only hire good people, so things will naturally improve as headcount increases' - is a fantasy you cannot afford. Back in reality, more people add infinitely more complexity, and your belief that a company doing ten times more revenue has things much easier, well, it's sadly not true. The need to get the basics right before adding people is very real, and it's the only viable option to grow headcount without deafening those aboard with the complexities growth brings with it.
 
