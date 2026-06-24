@@ -186,6 +186,38 @@ ${footer}
 `
 }
 
+function updateHomePage(posts) {
+	const homePath = path.join(ROOT, 'index.html')
+	if (!fs.existsSync(homePath)) return
+	let html = fs.readFileSync(homePath, 'utf8')
+
+	const latest = posts[0]
+	const latestLink = latest
+		? `Read Tom's latest post: <a class="font-bold" href="/blog/${latest.slug}/">${esc(latest.title)}</a>`
+		: ''
+	html = replaceMarker(html, 'BUILD:LATEST_POST_LINK', latestLink)
+
+	const items = posts.slice(0, 3).map((p, i) => `        <li>
+          <article class="post-card">
+            <p class="post-index" aria-hidden="true">${String(i + 1).padStart(2, '0')}</p>
+            <div>
+              <p class="font-meta uppercase tracking-[0.06em] text-sm text-ink/60">${esc(formatDate(p.date))}</p>
+              <h3 class="text-xl md:text-2xl"><a class="no-underline text-black hover:text-blue" href="/blog/${p.slug}/">${esc(p.title)}</a></h3>
+              <p class="max-w-[62ch]">${esc(p.description)}</p>
+            </div>
+          </article>
+        </li>`).join('\n')
+	html = replaceMarker(html, 'BUILD:LATEST_POSTS', '\n' + items + '\n        ')
+
+	fs.writeFileSync(homePath, html)
+	console.log('✅  index.html (latest-post link + recent writing)')
+}
+
+function replaceMarker(html, marker, content) {
+	const re = new RegExp(`(<!-- ${marker} -->)[\\s\\S]*?(<!-- /${marker} -->)`)
+	return html.replace(re, `$1${content}$2`)
+}
+
 function sitemap(posts) {
 	const url = (loc, lastmod) => `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`
 	const today = new Date().toISOString().slice(0, 10)
@@ -218,6 +250,7 @@ for (const post of posts) {
 }
 fs.writeFileSync(path.join(BLOG_DIR, 'index.html'), indexPage(posts))
 console.log('✅  blog/index.html')
+updateHomePage(posts)
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap(posts))
 console.log('✅  sitemap.xml')
 console.log(`\n${posts.length} post(s) built.`)
