@@ -1,0 +1,51 @@
+name: Build blog
+
+# Regenerate the static blog whenever post source (or the build tooling)
+# changes on main. The build turns blog/posts/<slug>.md into
+# blog/<slug>/index.html and refreshes blog/index.html + sitemap.xml, then
+# commits the result back to main.
+#
+# No loop: this job only triggers on the source paths below. The commit it
+# pushes back touches only generated output (blog/<slug>/index.html,
+# blog/index.html, sitemap.xml), none of which match these paths.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'blog/posts/**'
+      - 'tools/build-blog.js'
+      - 'tools/marked.min.js'
+  workflow_dispatch: {}   # allow manual runs from the Actions tab
+
+permissions:
+  contents: write          # needed to push the generated HTML back
+
+concurrency:
+  group: build-blog
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build blog
+        run: node tools/build-blog.js
+
+      - name: Commit generated HTML
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog/ sitemap.xml
+          if git diff --cached --quiet; then
+            echo "No changes to commit — output already up to date."
+            exit 0
+          fi
+          git commit -m "Build blog [skip ci]"
+          git push
