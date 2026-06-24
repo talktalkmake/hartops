@@ -47,5 +47,5 @@ jobs:
             echo "No changes to commit — output already up to date."
             exit 0
           fi
-          git commit -m "Build blog [skip ci]"
+          git commit -m "Build blog"
           git push
