@@ -1,7 +1,7 @@
 ---
 title: The Gorilla Client
 date: 2026-06-24
-description: Guess who your worst client is.
+description: Guess who your worst client really is.
 ---
 
 There's an old joke that bounces around most agencies that sounds like the following: 
