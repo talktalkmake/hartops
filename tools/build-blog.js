@@ -101,9 +101,13 @@ function postPage(post) {
 	const canonical = `${SITE}/blog/${post.slug}/`
 	const ld = {
 		'@context': 'https://schema.org', '@type': 'BlogPosting', headline: post.title,
-		datePublished: post.date, description: post.description,
+		datePublished: post.date, dateModified: post.date, description: post.description,
+		image: `${SITE}/assets/img/tom-hart.jpg`,
 		author: { '@type': 'Person', name: 'Tom Hart', url: `${SITE}/` },
-		publisher: { '@type': 'Organization', name: 'Hart Ops' },
+		publisher: {
+			'@type': 'Organization', name: 'Hart Ops',
+			logo: { '@type': 'ImageObject', url: `${SITE}/assets/img/hart-ops-logo.svg` },
+		},
 		mainEntityOfPage: canonical,
 	}
 	return `<!doctype html>
