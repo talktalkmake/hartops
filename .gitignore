@@ -12,3 +12,6 @@ node_modules/
 tools/tailwindcss
 tools/tailwindcss.exe
 tools/tailwindcss-*
+
+# Agent worktrees — scratch checkouts, never committed.
+.claude/worktrees/
