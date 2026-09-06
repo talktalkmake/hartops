@@ -124,7 +124,7 @@ ${header}
   <article>
     <header class="px-6 md:px-8 py-14 md:py-20 bg-white">
       <div class="mx-auto max-w-[68ch]">
-        <p class="font-meta uppercase tracking-[0.06em] text-sm text-ink/60 mb-3"><a class="text-ink/60 no-underline hover:text-blue" href="/blog/">Field Notes</a> &middot; ${esc(formatDate(post.date))}</p>
+        <p class="font-meta uppercase tracking-[0.06em] text-sm text-ink/70 mb-3"><a class="text-ink/70 no-underline hover:text-blue-text" href="/blog/">Field Notes</a> &middot; ${esc(formatDate(post.date))}</p>
         <h1 class="text-4xl md:text-6xl">${esc(post.title)}</h1>
         <p class="text-lg md:text-xl mt-4">${esc(post.description)}</p>
       </div>
@@ -136,7 +136,7 @@ ${post.html}
     </div>
     <div class="px-6 md:px-8 pb-12">
       <div class="mx-auto max-w-[68ch]">
-        <a class="font-meta uppercase tracking-[2px] text-sm text-blue no-underline hover:underline" href="/blog/">&larr; All field notes</a>
+        <a class="font-meta uppercase tracking-[2px] text-sm text-blue-text no-underline hover:underline" href="/blog/">&larr; All field notes</a>
       </div>
     </div>
   </article>
@@ -151,10 +151,10 @@ function indexPage(posts) {
 	const canonical = `${SITE}/blog/`
 	const items = posts.map(p => `        <li>
           <article class="border-t border-ink/15 py-8 md:py-10">
-            <p class="font-meta uppercase tracking-[0.06em] text-sm text-ink/60 mb-2">${esc(formatDate(p.date))}</p>
-            <h2 class="text-2xl md:text-4xl mb-3 max-w-[26ch]"><a class="no-underline text-black hover:text-blue" href="/blog/${p.slug}/">${esc(p.title)}</a></h2>
+            <p class="font-meta uppercase tracking-[0.06em] text-sm text-ink/70 mb-2">${esc(formatDate(p.date))}</p>
+            <h2 class="text-2xl md:text-4xl mb-3 max-w-[26ch]"><a class="no-underline text-black hover:text-blue-text" href="/blog/${p.slug}/">${esc(p.title)}</a></h2>
             <p class="max-w-[62ch]">${esc(p.description)}</p>
-            <a class="inline-block mt-3 font-meta uppercase tracking-[2px] text-sm text-blue no-underline hover:underline" href="/blog/${p.slug}/">Read &rarr;</a>
+            <a class="inline-block mt-3 font-meta uppercase tracking-[2px] text-sm text-blue-text no-underline hover:underline" href="/blog/${p.slug}/">Read &rarr;</a>
           </article>
         </li>`).join('\n')
 	return `<!doctype html>
@@ -167,7 +167,7 @@ ${header}
 <main id="top">
   <section class="px-6 md:px-8 py-16 md:py-24 bg-white">
     <div class="mx-auto max-w-[1100px]">
-      <p class="font-meta uppercase tracking-[0.08em] text-sm text-ink/60 mb-3">Field Notes</p>
+      <p class="font-meta uppercase tracking-[0.08em] text-sm text-ink/70 mb-3">Field Notes</p>
       <h1 class="text-4xl md:text-6xl max-w-[18ch]">The numbers that actually move agency margin.</h1>
       <p class="text-lg md:text-xl max-w-[60ch] mt-4">Short, practical notes on agency profit, operations, and the levers most owners can't see in time to pull. Written for people running a $1M&ndash;$5M shop.</p>
     </div>
@@ -201,8 +201,8 @@ function updateHomePage(posts) {
           <article class="post-card">
             <p class="post-index" aria-hidden="true">${String(i + 1).padStart(2, '0')}</p>
             <div>
-              <p class="font-meta uppercase tracking-[0.06em] text-sm text-ink/60">${esc(formatDate(p.date))}</p>
-              <h3 class="text-xl md:text-2xl"><a class="no-underline text-black hover:text-blue" href="/blog/${p.slug}/">${esc(p.title)}</a></h3>
+              <p class="font-meta uppercase tracking-[0.06em] text-sm text-ink/70">${esc(formatDate(p.date))}</p>
+              <h3 class="text-xl md:text-2xl"><a class="no-underline text-black hover:text-blue-text" href="/blog/${p.slug}/">${esc(p.title)}</a></h3>
               <p class="max-w-[62ch]">${esc(p.description)}</p>
             </div>
           </article>
