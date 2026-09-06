@@ -8,6 +8,7 @@
   --color-cream: #E7E4D6;       /* page background */
   --color-ink: #2C2E27;          /* dark olive-grey body text */
   --color-blue: #047AFF;         /* primary accent / theme-dark bg */
+  --color-blue-text: #0059CC;    /* AA-safe blue for small text/links — 4.99:1 on cream, 6.36:1 on white */
   --color-yellow: #ECF251;       /* button fill / accent on dark themes */
   --color-spooky-mulder: #51FF2F;         /* secondary accent for fun */
   --color-orange: #FF9500;
@@ -51,7 +52,7 @@
  * Section themes — mirror Squarespace's data-section-theme="dark" / "black".
  */
 @layer components {
-  .theme-dark            { @apply bg-blue text-white; }
+  .theme-dark            { @apply bg-navy text-white; }
   .theme-dark h1,
   .theme-dark h2,
   .theme-dark h3         { @apply text-white; }
@@ -108,7 +109,7 @@
   }
   .theme-mid .btn{
     --btn-ring: var(--color-ink);
-    background: var(--color-blue);
+    background: var(--color-navy);
     color: white;
   }
 
@@ -194,7 +195,7 @@
   .post-body h2 { @apply text-2xl md:text-3xl mt-10 mb-3; }
   .post-body h3 { @apply text-xl md:text-2xl mt-8 mb-2; }
   .post-body p  { @apply mb-[1.1em]; }
-  .post-body a  { @apply text-blue underline underline-offset-2; }
+  .post-body a  { @apply text-blue-text underline underline-offset-2; }
   .post-body a:hover { @apply text-ink; }
   .post-body ul { @apply list-disc pl-6 mb-[1.1em]; }
   .post-body ol { @apply list-decimal pl-6 mb-[1.1em]; }
