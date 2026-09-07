@@ -110,12 +110,24 @@ function postPage(post) {
 		},
 		mainEntityOfPage: canonical,
 	}
+	const breadcrumbLd = {
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{ '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+			{ '@type': 'ListItem', position: 2, name: 'Field Notes', item: `${SITE}/blog/` },
+			{ '@type': 'ListItem', position: 3, name: post.title, item: canonical },
+		],
+	}
 	return `<!doctype html>
 <html lang="en">
 <head>
 ${headCommon(`${post.title} — Hart Ops`, post.description, canonical, 'article')}
 <script type="application/ld+json">
 ${JSON.stringify(ld, null, 2)}
+</script>
+<script type="application/ld+json">
+${JSON.stringify(breadcrumbLd, null, 2)}
 </script>
 </head>
 <body class="bg-cream">
@@ -178,12 +190,23 @@ function indexPage(posts) {
 			url: `${SITE}/blog/${p.slug}/`,
 		})),
 	}
+	const breadcrumbLd = {
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{ '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+			{ '@type': 'ListItem', position: 2, name: 'Field Notes', item: canonical },
+		],
+	}
 	return `<!doctype html>
 <html lang="en">
 <head>
 ${headCommon('Field Notes — Hart Ops', description, canonical, 'website')}
 <script type="application/ld+json">
 ${JSON.stringify(ld, null, 2)}
+</script>
+<script type="application/ld+json">
+${JSON.stringify(breadcrumbLd, null, 2)}
 </script>
 </head>
 <body class="bg-cream">
