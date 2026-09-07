@@ -271,6 +271,7 @@ function sitemap(posts) {
 	const latest = posts.length ? posts[0].date : today
 	const rows = [
 		url(`${SITE}/`, '2026-05-25'),
+		url(`${SITE}/services/`, '2026-09-06'),
 		url(`${SITE}/blog/`, latest),
 		...posts.map(p => url(`${SITE}/blog/${p.slug}/`, p.date)),
 	]

@@ -41,6 +41,7 @@ Tom Hart is a profit advisor with 20 years inside marketing and creative agencie
 ## Key links
 
 - Homepage: https://hartops.com/
+- Services (agency operations and profitability advisory): https://hartops.com/services/
 - Blog (field notes on agency profit and operations): https://hartops.com/blog/
 - VERA (console-first time-tracking product): https://getvera.site
 - VERA build log (manifesto behind the practice): https://getvera.site/blog
