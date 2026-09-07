@@ -103,7 +103,7 @@ function postPage(post) {
 		'@context': 'https://schema.org', '@type': 'BlogPosting', headline: post.title,
 		datePublished: post.date, dateModified: post.date, description: post.description,
 		image: `${SITE}/assets/img/tom-hart.jpg`,
-		author: { '@type': 'Person', name: 'Tom Hart', url: `${SITE}/` },
+		author: { '@type': 'Person', '@id': `${SITE}/#tom-hart`, name: 'Tom Hart', url: `${SITE}/` },
 		publisher: {
 			'@type': 'Organization', name: 'Hart Ops',
 			logo: { '@type': 'ImageObject', url: `${SITE}/assets/img/hart-ops-logo.svg` },
@@ -149,6 +149,7 @@ ${footer}
 
 function indexPage(posts) {
 	const canonical = `${SITE}/blog/`
+	const description = 'Field notes on agency profit, operations, and the numbers that actually move margin — from Tom Hart.'
 	const items = posts.map(p => `        <li>
           <article class="border-t border-ink/15 py-8 md:py-10">
             <p class="font-meta uppercase tracking-[0.06em] text-sm text-ink/70 mb-2">${esc(formatDate(p.date))}</p>
@@ -157,10 +158,33 @@ function indexPage(posts) {
             <a class="inline-block mt-3 font-meta uppercase tracking-[2px] text-sm text-blue-text no-underline hover:underline" href="/blog/${p.slug}/">Read &rarr;</a>
           </article>
         </li>`).join('\n')
+	const ld = {
+		'@context': 'https://schema.org',
+		'@type': 'Blog',
+		'@id': `${SITE}/blog/#blog`,
+		url: canonical,
+		name: 'Field Notes — Hart Ops',
+		description,
+		inLanguage: 'en',
+		isPartOf: { '@id': `${SITE}/#website` },
+		publisher: { '@id': `${SITE}/#hartops` },
+		author: { '@id': `${SITE}/#tom-hart` },
+		blogPost: posts.map(p => ({
+			'@type': 'BlogPosting',
+			'@id': `${SITE}/blog/${p.slug}/#post`,
+			headline: p.title,
+			datePublished: p.date,
+			description: p.description,
+			url: `${SITE}/blog/${p.slug}/`,
+		})),
+	}
 	return `<!doctype html>
 <html lang="en">
 <head>
-${headCommon('Field Notes — Hart Ops', 'Field notes on agency profit, operations, and the numbers that actually move margin — from Tom Hart.', canonical, 'website')}
+${headCommon('Field Notes — Hart Ops', description, canonical, 'website')}
+<script type="application/ld+json">
+${JSON.stringify(ld, null, 2)}
+</script>
 </head>
 <body class="bg-cream">
 ${header}
