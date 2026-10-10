@@ -1,0 +1,12 @@
+The fonts in this folder are self-hosted copies, Latin subset only, of:
+
+  Abel              (Matthew Desmond)
+  Newsreader        (Production Type)
+  PT Serif          (ParaType)
+  Roboto Condensed  (Christian Robertson)
+
+All four families are licensed under the SIL Open Font License, Version 1.1.
+Full license text and each family's copyright notice:
+https://openfontlicense.org (license) and https://fonts.google.com (each family's page, under "License").
+
+They were downloaded as woff2 files from Google Fonts.

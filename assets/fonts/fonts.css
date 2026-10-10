@@ -1,0 +1,59 @@
+/* Self-hosted fonts (issue 25): Latin subset only, only the styles the site uses.
+   Plain CSS, not part of the Tailwind build. Family names match src/input.css. */
+
+@font-face {
+  font-family: "Abel";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/abel-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url("/assets/fonts/newsreader.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Newsreader";
+  font-style: italic;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url("/assets/fonts/newsreader-italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "PT Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/pt-serif-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "PT Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/pt-serif-400-italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "PT Serif";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/assets/fonts/pt-serif-700.woff2") format("woff2");
+}
+
+/* One variable file covers both weights the site uses (400 and 500). */
+@font-face {
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url("/assets/fonts/roboto-condensed.woff2") format("woff2");
+}
