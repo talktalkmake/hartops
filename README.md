@@ -63,14 +63,14 @@ Three sections invert the palette via the `theme-dark` class (blue bg + white te
 
 ## Fonts
 
-Four Google Fonts are loaded via `<link>` in `index.html`, mirroring the live Squarespace site:
+Four fonts are self-hosted in `assets/fonts/` (woff2, Latin subset, SIL Open Font License; see `assets/fonts/OFL.txt`) and loaded by `assets/fonts/fonts.css`, with PT Serif regular and Newsreader regular preloaded in each page head:
 
 - **Newsreader** (400, 500) — headings (`font-heading` / inherited from `h1`/`h2`/`h3`)
 - **PT Serif** (400, 400 italic, 700) — body copy (`font-body` / inherited from `body`)
 - **Roboto Condensed** (400, 500) — primary buttons, form labels, footer, testimonial captions (`font-meta`)
 - **Abel** — header brand wordmark and Contact link only (`font-ui`)
 
-To add a weight or family: edit the `fonts.googleapis.com/css2?...` URL in `index.html` AND update the matching `--font-*` token in `src/input.css`, then rebuild.
+To add a weight or family: add the woff2 file to `assets/fonts/`, add its `@font-face` to `assets/fonts/fonts.css`, AND update the matching `--font-*` token in `src/input.css`, then rebuild.
 
 ## Contact form
 
