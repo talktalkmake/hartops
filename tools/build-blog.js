@@ -7,6 +7,7 @@
  *   blog/posts/<slug>.md   →   blog/<slug>/index.html   (one styled article)
  *                          +   blog/index.html          (regenerated listing)
  *                          +   sitemap.xml              (home + blog + posts)
+ *                          +   index.html              (home page: latest-post link + recent writing)
  *
  * Each post is plain Markdown with a tiny frontmatter block:
  *
