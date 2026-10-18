@@ -1,4 +1,4 @@
-// Run only by .github/workflows/publish-field-note.yml. Reads the issue from
+// Run only by the publish workflow in the private talktalkmake/hartops-ops repo. Reads the issue from
 // the event file at GITHUB_EVENT_PATH, validates it, and writes
 // blog/posts/<slug>.md. If the issue already published a post (an "issue: N" line in its frontmatter), that post is overwritten in place. Issue text never touches a shell.
 'use strict';

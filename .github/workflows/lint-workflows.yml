@@ -1,0 +1,29 @@
+name: Lint workflows
+
+# Checks every workflow file with actionlint whenever one changes, so a file
+# GitHub would reject (for example a context used where it isn't allowed, like
+# runner in a job's env) shows up as a red check before it is merged.
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/**'
+
+permissions:
+  contents: read
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run actionlint
+        run: |
+          bash <(curl -sSL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.7/scripts/download-actionlint.bash) 1.7.7
+          ./actionlint -color
