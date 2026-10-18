@@ -1,0 +1,9 @@
+name: Lint test (delete me)
+on: workflow_dispatch
+jobs:
+  t:
+    runs-on: ubuntu-latest
+    env:
+      BAD: ${{ runner.temp }}/x.txt
+    steps:
+      - run: echo "$BAD"
