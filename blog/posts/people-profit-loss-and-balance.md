@@ -12,3 +12,7 @@ David Maister said the following more than 30 years ago and, as in most matters,
 ### What does that mean? 
 
 First let's set aside the ugly connotation that people can be reduced to numbers, to 'things.' We're talking about people being assets because they change over time, for better or worse, for both themselves and their employer. It means the people in the company need to deliver on the investment the company makes in them. And it means — sorry, owner-operators — that it's management's responsibility to improve the value of the asset over time. Put differently, it is the empoloyees responsibility to add value in the short-term; it's the company's responsibility to add value in the long-term.
+
+### This is going to feel uncomfortable
+
+It's natural to laud high performers. We want people to succeed and be happy in their job. But, as every former piano player knows, without practice your skill only declines. By asking the profitable (P&L) people to repeat their days we neglect the balance sheet of their career. As an owner-operator you know that by focusing only on the here and now you're reducing your ability to react to market forces. Why would it be any different for your employees?
