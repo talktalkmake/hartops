@@ -1,0 +1,65 @@
+name: Publish field note
+
+# Runs only when talktalkmake adds the "publish" label to an issue.
+# Writing or editing an issue runs nothing. The push below is made with
+# GITHUB_TOKEN, which does not trigger build-blog.yml, so this job builds the
+# blog itself; GitHub Pages still deploys the push.
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: build-blog
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.event.label.name == 'publish' && github.event.sender.login == 'talktalkmake'
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      ISSUE: ${{ github.event.issue.number }}
+      PUBLISH_ERROR_FILE: ${{ runner.temp }}/publish-error.txt
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Write the post
+        id: post
+        run: node tools/publish-field-note.js
+
+      - name: Build blog
+        run: node tools/build-blog.js
+
+      - name: Commit and push
+        env:
+          SLUG: ${{ steps.post.outputs.slug }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog/ sitemap.xml
+          git commit -m "Publish field note: $SLUG (#$ISSUE)"
+          git push
+
+      - name: Close the issue with the link
+        env:
+          SLUG: ${{ steps.post.outputs.slug }}
+        run: gh issue close "$ISSUE" -R "$GITHUB_REPOSITORY" --comment "Published at https://hartops.com/blog/$SLUG/ (live in about a minute)."
+
+      - name: Report what went wrong
+        if: failure()
+        run: |
+          if [ -s "$PUBLISH_ERROR_FILE" ]; then
+            gh issue comment "$ISSUE" -R "$GITHUB_REPOSITORY" --body-file "$PUBLISH_ERROR_FILE"
+          else
+            gh issue comment "$ISSUE" -R "$GITHUB_REPOSITORY" --body "Publishing failed. See $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          fi
+          gh issue edit "$ISSUE" -R "$GITHUB_REPOSITORY" --remove-label publish
