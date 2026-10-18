@@ -109,14 +109,9 @@ Posts live at `hartops.com/blog/<slug>/` and are written in **Markdown**. The bl
 
 4. Commit the new `.md`, the generated `blog/<slug>/index.html`, the updated `blog/index.html`, `sitemap.xml` and `index.html`, and push. Pages redeploys in ~1 minute.
 
-### Publishing from an issue (no software needed)
+### Publishing from an issue
 
-1. On github.com, open a new issue with the **Field note** template.
-2. The issue title is the post title. Fill in the one-sentence description, an optional publish date (blank means today), and the note in Markdown. Saving or editing the issue runs nothing.
-3. When it is ready, add the **publish** label. The *Publish field note* workflow writes `blog/posts/<slug>.md` (the slug comes from the title), builds the blog, pushes to `main`, and closes the issue with the live link. If something is missing it comments the reason and removes the label; fix the issue and add the label again.
-4. To change a published note, edit its closed issue (title, description or note) and add the **publish** label again. The post is updated in place: its web address stays the same, and so does its date unless you fill in a new one. Editing `blog/posts/<slug>.md` directly still works, but the next update from the issue overwrites those edits.
-
-Only `talktalkmake` can publish this way. The workflow is `.github/workflows/publish-field-note.yml` and the script is `tools/publish-field-note.js`.
+Field notes are drafted and published from issues in the private repo `talktalkmake/hartops-ops`; its README has the steps. Its workflow writes `blog/posts/<slug>.md` here with `tools/publish-field-note.js` and pushes, and `build-blog.yml` then builds the page. A post's `issue: N` line names the issue in that repo it came from; the next update from that issue overwrites any edit made to the file here.
 
 You do **not** rebuild any CSS for a new post — post styling comes from the `.post-body` rules baked into `blog/blog.css`. Only regenerate `blog/blog.css` if you change the post template (`tools/build-blog.js`) or the `.post-body` rules in `src/input.css`:
 

@@ -2,7 +2,7 @@
 title: People: Profit, Loss, and Balance
 date: 2026-10-15
 description: People have both a P&L and a balance sheet; treat them with care like you would any substantial investment.
-issue: 32
+issue: 17
 ---
 
 David Maister said the following more than 30 years ago and, as in most matters, he's both right and more right than ever: 

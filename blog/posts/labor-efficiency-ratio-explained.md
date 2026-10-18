@@ -2,7 +2,7 @@
 title: Labor Efficiency Ratio, Explained
 date: 2026-09-06
 description: What LER actually measures, why it's the core metric in my practice, and how to move it without burning your team out.
-issue: 37
+issue: 20
 ---
 
 Labor Efficiency Ratio — LER — is the relationship between what an agency pays its people to do the work and what that work brings back in. Dollars out versus dollars in. It's the tenth step in the philosophy I use with every client, and it's the metric I keep coming back to because it's the one number that tells you, honestly, whether your team's time is turning into money or just turning into hours.
