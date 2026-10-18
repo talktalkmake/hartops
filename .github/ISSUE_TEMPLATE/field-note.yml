@@ -1,0 +1,31 @@
+name: Field note
+description: Write a field note for hartops.com. Add the "publish" label when it is ready.
+title: ""
+labels: ["field-note"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The issue title is the post title. Nothing is published until you add the **publish** label.
+  - type: input
+    id: description
+    attributes:
+      label: Description
+      description: One sentence. It appears on the Field Notes listing and in search results.
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Publish date
+      description: Optional. YYYY-MM-DD. Leave blank for today.
+      placeholder: "2026-10-20"
+    validations:
+      required: false
+  - type: textarea
+    id: note
+    attributes:
+      label: Field note
+      description: Markdown.
+    validations:
+      required: true
