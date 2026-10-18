@@ -7,7 +7,7 @@ issue: 32
 
 David Maister said the following more than 30 years ago and, as in most matters, he's both right and more right than ever: 
 
-"The assets employed in the business are ... Staff, whose salaries are comparable to assets financed by debt, at a fixed interest rate."
+> The assets employed in the business are ... Staff, whose salaries are comparable to assets financed by debt, at a fixed interest rate.
 
 ### What does that mean? 
 
