@@ -1,6 +1,6 @@
 // Run only by .github/workflows/publish-field-note.yml. Reads the issue from
 // the event file at GITHUB_EVENT_PATH, validates it, and writes
-// blog/posts/<slug>.md. Issue text never touches a shell.
+// blog/posts/<slug>.md. If the issue already published a post (an "issue: N" line in its frontmatter), that post is overwritten in place. Issue text never touches a shell.
 'use strict';
 const fs = require('fs');
 const path = require('path');
@@ -34,6 +34,7 @@ function section(heading) {
 }
 const description = section('### Description');
 let date = section('### Publish date');
+const dateGiven = Boolean(date);
 
 if (!title) fail('The issue has no title. The title becomes the post title.');
 if (!description) fail('The description is empty. Add one sentence and add the publish label again.');
@@ -58,13 +59,36 @@ if (slug.length > 60) {
 }
 if (!slug) fail('The title has no letters or numbers to make a web address from.');
 
-const file = path.join(__dirname, '..', 'blog', 'posts', slug + '.md');
-if (fs.existsSync(file)) {
+// A post this issue already published carries "issue: N" in its frontmatter.
+const number = issue.number;
+const postsDir = path.join(__dirname, '..', 'blog', 'posts');
+const frontmatterOf = (f) => {
+  const raw = fs.readFileSync(path.join(postsDir, f), 'utf8').replace(/\r\n/g, '\n');
+  const m = raw.match(/^---\n([\s\S]*?)\n---/);
+  return m ? m[1].split('\n').map((l) => l.trim()) : [];
+};
+const claimed = fs.readdirSync(postsDir)
+  .filter((f) => f.endsWith('.md'))
+  .filter((f) => frontmatterOf(f).includes(`issue: ${number}`));
+if (claimed.length > 1) {
+  fail(`More than one post says it came from issue #${number}: ${claimed.join(', ')}. Fix them by hand on github.com.`);
+}
+let mode = 'new';
+if (claimed.length === 1) {
+  mode = 'updated';
+  slug = claimed[0].replace(/\.md$/, '');
+  if (!dateGiven) {
+    const line = frontmatterOf(claimed[0]).find((l) => l.startsWith('date:'));
+    if (line) date = line.slice('date:'.length).trim();
+  }
+}
+const file = path.join(postsDir, slug + '.md');
+if (mode === 'new' && fs.existsSync(file)) {
   fail(`A field note at hartops.com/blog/${slug}/ already exists. Change the issue title and add the publish label again.`);
 }
 
-const md = `---\ntitle: ${title}\ndate: ${date}\ndescription: ${description}\n---\n\n${note}\n`;
+const md = `---\ntitle: ${title}\ndate: ${date}\ndescription: ${description}\nissue: ${number}\n---\n\n${note}\n`;
 fs.writeFileSync(file, md);
 
-if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, 'slug=' + slug + '\n');
-console.log('Wrote blog/posts/' + slug + '.md');
+if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, 'slug=' + slug + '\nmode=' + mode + '\n');
+console.log((mode === 'new' ? 'Wrote' : 'Updated') + ' blog/posts/' + slug + '.md');

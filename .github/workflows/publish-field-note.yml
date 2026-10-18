@@ -4,6 +4,7 @@ name: Publish field note
 # Writing or editing an issue runs nothing. The push below is made with
 # GITHUB_TOKEN, which does not trigger build-blog.yml, so this job builds the
 # blog itself; GitHub Pages still deploys the push.
+# Adding the label again to an issue that already published a post updates that post.
 
 on:
   issues:
@@ -40,19 +41,42 @@ jobs:
         run: node tools/build-blog.js
 
       - name: Commit and push
+        id: commit
         env:
           SLUG: ${{ steps.post.outputs.slug }}
+          MODE: ${{ steps.post.outputs.mode }}
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add blog/ sitemap.xml
-          git commit -m "Publish field note: $SLUG (#$ISSUE)"
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "$MODE" = "updated" ]; then VERB=Update; else VERB=Publish; fi
+          git commit -m "$VERB field note: $SLUG (#$ISSUE)"
           git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
 
       - name: Close the issue with the link
         env:
           SLUG: ${{ steps.post.outputs.slug }}
-        run: gh issue close "$ISSUE" -R "$GITHUB_REPOSITORY" --comment "Published at https://hartops.com/blog/$SLUG/ (live in about a minute)."
+          MODE: ${{ steps.post.outputs.mode }}
+          CHANGED: ${{ steps.commit.outputs.changed }}
+        run: |
+          URL="https://hartops.com/blog/$SLUG/"
+          if [ "$CHANGED" != "true" ]; then
+            MSG="Nothing changed: $URL already matches this issue."
+          elif [ "$MODE" = "updated" ]; then
+            MSG="Updated $URL (live in about a minute)."
+          else
+            MSG="Published at $URL (live in about a minute)."
+          fi
+          gh issue edit "$ISSUE" -R "$GITHUB_REPOSITORY" --remove-label publish
+          gh issue comment "$ISSUE" -R "$GITHUB_REPOSITORY" --body "$MSG"
+          if [ "$(gh issue view "$ISSUE" -R "$GITHUB_REPOSITORY" --json state -q .state)" = "OPEN" ]; then
+            gh issue close "$ISSUE" -R "$GITHUB_REPOSITORY"
+          fi
 
       - name: Report what went wrong
         if: failure()
