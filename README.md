@@ -82,7 +82,7 @@ A honeypot field (`botcheck`) is included for spam — bots tend to fill every f
 
 ## Blog
 
-Posts live at `hartops.com/blog/<slug>/` and are written in **Markdown**. The blog is fully static and **completely separate from the home page**: it has its own stylesheet (`blog/blog.css`) and never touches `index.html` or the site-wide `styles.css`.
+Posts live at `hartops.com/blog/<slug>/` and are written in **Markdown**. The blog is fully static and **completely separate from the home page**: it has its own stylesheet (`blog/blog.css`) and never touches the site-wide `styles.css`. The build does update two marked spots on the home page, `index.html`: the "Read Tom's latest post" link and the recent-writing list.
 
 ### Write a post
 
@@ -105,9 +105,9 @@ Posts live at `hartops.com/blog/<slug>/` and are written in **Markdown**. The bl
    node tools/build-blog.js
    ```
 
-   That writes `blog/<slug>/index.html`, regenerates `blog/index.html` (the listing, newest first), and updates `sitemap.xml`. Markdown is rendered by the vendored `tools/marked.min.js` (MIT, committed) — no npm.
+   That writes `blog/<slug>/index.html`, regenerates `blog/index.html` (the listing, newest first), refreshes the home page's latest-post link and recent writing in `index.html`, and updates `sitemap.xml`. Markdown is rendered by the vendored `tools/marked.min.js` (MIT, committed) — no npm.
 
-4. Commit the new `.md`, the generated `blog/<slug>/index.html`, the updated `blog/index.html` + `sitemap.xml`, and push. Pages redeploys in ~1 minute.
+4. Commit the new `.md`, the generated `blog/<slug>/index.html`, the updated `blog/index.html`, `sitemap.xml` and `index.html`, and push. Pages redeploys in ~1 minute.
 
 ### Publishing from an issue (no software needed)
 
