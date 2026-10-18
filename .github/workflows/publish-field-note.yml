@@ -25,7 +25,7 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
       ISSUE: ${{ github.event.issue.number }}
-      PUBLISH_ERROR_FILE: ${{ runner.temp }}/publish-error.txt
+      PUBLISH_ERROR_FILE: /tmp/publish-error.txt
     steps:
       - uses: actions/checkout@v4
 
