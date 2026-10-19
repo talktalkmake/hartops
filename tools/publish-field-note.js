@@ -17,7 +17,7 @@ const body = (issue.body || '').replace(/\r\n/g, '\n');
 const title = (issue.title || '').trim();
 
 const lines = body.split('\n');
-const noteAt = lines.findIndex((l) => l === '### Field note');
+const noteAt = lines.findIndex((l) => l.trim() === '### Field note');
 if (noteAt === -1) {
   fail('The issue is missing its "Field note" section. Open it with the Field note template.');
 }
@@ -26,9 +26,9 @@ const note = clean(lines.slice(noteAt + 1).join('\n').trim());
 
 function section(heading) {
   const head = lines.slice(0, noteAt);
-  const start = head.findIndex((l) => l === heading);
+  const start = head.findIndex((l) => l.trim() === heading);
   if (start === -1) return '';
-  let end = head.findIndex((l, i) => i > start && l.startsWith('### '));
+  let end = head.findIndex((l, i) => i > start && l.trim().startsWith('### '));
   if (end === -1) end = head.length;
   return clean(head.slice(start + 1, end).join(' ').replace(/\s+/g, ' ').trim());
 }
