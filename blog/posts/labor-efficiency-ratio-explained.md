@@ -17,12 +17,12 @@ At North Street Creative, my approach increased Labor Efficiency by 122% alongsi
 
 If you measure only one thing, measure LER. 
 
-### What it's looked like in practice
+### What it looks like in practice
 
 Think of your P&L: 
 
 1. Revenue
-2. Cost of good sold
+2. Cost of goods sold
 3. Gross profit 👈 this is the real size of your firm
 4. Operating expenses (OPEX)
 5. Net profit
@@ -31,10 +31,14 @@ By moving all direct labor costs (labor you manage) to your OPEX you can isolate
 
 $876,239 gross profit / $606,434 in direct labor = 1.44
 
-> 3.0 means you pay $1 in direct labor costs (salaries) for every $3 it services
-> 1.44 means you pay $1 for every $1.44 of revenue it services
+> 3.0 means you pay $1 in direct labor for every $3 of gross profit it produces
+> 1.44 means you pay $1 in direct labor for every $1.44 of gross profit it produces
 
-This is not a hard number to calculate, but it tells you much about the fortunes of the company, which is close to ruin at a 1.44. 
+This is not a hard number to calculate, but it tells you about the fortunes of the company, which is close to ruin at a 1.44. 
+
+At 1.44, only about $270K is left to cover management salaries, overhead, and profit. It's not likely to end well. As Hemingway put: 
+
+> “How did you go bankrupt?” Bill asked. “Two ways,” Mike said. “Gradually and then suddenly.”
 
 ### How to move it without burning the team out
 
