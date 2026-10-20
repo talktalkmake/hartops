@@ -38,7 +38,7 @@ The answers to these four points will determine success in ways resume bullets n
 
 ### Outsiders never stop learning
 
-The highest value quality you can buy in an employee is 'low-ego-big-appetite.' Something outsiders have in common, despite the gaps in their CV. 
+The highest value quality you can buy in an employee is 'low-ego-big-appetite.' Something outsiders have in common, despite the gaps in their resume. 
 
 Some examples of outsiders we might consider for hiring as an AM: 
 
