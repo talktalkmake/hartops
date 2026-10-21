@@ -55,7 +55,3 @@ The second is Command by Intent: giving your people the context to make decision
 The third is treating junior talent as your future rather than your bottleneck — pairing seniors who teach with juniors who are given real, appropriately-scoped work, so the agency's capacity grows without every hour costing senior-level dollars. And underneath all three is process: I install the Entrepreneurial Operating System (EOS) as standard, because a documented process is what lets efficiency gains survive contact with a bad week, instead of evaporating the moment the owner looks away.
 
 That's the difference between improving LER and burning out a team to fake it for a quarter: the first one is systems thinking — building the process so your people are doing the parts only humans can do well, instead of running them harder inside a broken one.
-
-### The four-week diagnostic
-
-This is the work I do. As an agency operations advisor, I use labor efficiency ratio, alongside the rest of the 12-step approach, to find where an agency's dollars out and dollars in have drifted apart, and to build the playbook that closes the gap — [20% margins by design](/services/), not by accident and not by attrition. If any of this sounds like your Tuesday, the [services page](/services/) walks through what a four-week diagnostic looks like, and what gets installed after it.
