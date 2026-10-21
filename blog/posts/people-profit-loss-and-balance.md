@@ -1,6 +1,6 @@
 ---
 title: People: Profit, Loss, and Balance
-date: 2026-10-15
+date: 2026-08-31
 description: People have both a P&L and a balance sheet; treat them with care like you would any substantial investment.
 issue: 17
 ---
