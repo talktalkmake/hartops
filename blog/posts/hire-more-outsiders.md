@@ -1,6 +1,6 @@
 ---
 title: Hire More Outsiders
-date: 2026-10-20
+date: 2026-09-30
 description: Complaining about the cost of labor in a buyer's market? Sounds like a lack of imagination
 issue: 22
 ---
