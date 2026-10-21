@@ -1,6 +1,6 @@
 ---
 title: The Gorilla Client
-date: 2026-06-24
+date: 2026-07-31
 description: Guess who your worst client is
 issue: 19
 ---
@@ -81,4 +81,4 @@ Some improvements you can make today.
 2. Divide the budget into parts, handing each part or role to each person responsible for delivering it
 3. Build and agree on the schedule for delivering the project with both the team and the client
 
-Commitment is a powerful tool, but only works if commitment is genuine. When your team co-signs the project plan they're agreeing to the plan being solid (feasible and defensible), and to what needs to be done for it to happen successfully. If they commit to it in good faith, you can hold them to it. You turn yourself into your best client by installing and maintaining such high standards. 
+Commitment is a powerful tool, but only works if commitment is genuine. When your team co-signs the project plan they're agreeing to the plan being solid (feasible and defensible), and to what needs to be done for it to happen successfully. If they commit to it in good faith, you can hold them to it. You turn yourself into your best client by installing and maintaining such high standards.
